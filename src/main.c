@@ -37,9 +37,6 @@ int main() {
     struct Person p;
     int found_count = 0;
     
-    fprintf(output, "Владельцы с номерами телефонов, начинающимися на 621:\n");
-    fprintf(output, "================================================\n\n");
-    
     while (fgets(line, sizeof(line), input)) {
         line[strcspn(line, "\n")] = 0;
         if (strlen(line) == 0) continue;
@@ -77,6 +74,5 @@ int main() {
     fclose(input);
     fclose(output);
     
-    printf("Обработка завершена. Найдено записей: %d\n", found_count);
     return 0;
 }
