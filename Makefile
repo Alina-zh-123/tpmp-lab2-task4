@@ -1,11 +1,14 @@
-CFLAGS = -I./src -Wall -Wextra
+CFLAGS = -I./src
 OBJDIR = obj
+SRCDIR = src
 
-main: $(OBJDIR) obj/main.o
-	gcc -o main obj/main.o $(OBJDIR)/*.o 2>/dev/null || gcc -o main obj/main.o
+OBJS = $(OBJDIR)/main.o
+
+main: $(OBJDIR) $(OBJS)
+	gcc $(OBJS) -o main
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
-obj/main.o: src/main.c | $(OBJDIR)
-	gcc $(CFLAGS) -c src/main.c -o obj/main.o
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	gcc $(CFLAGS) -c $< -o $@
